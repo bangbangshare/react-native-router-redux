@@ -10,7 +10,10 @@ const leftButton = (props = {}, transitioning) => {
   let handler = () => {};
   let title = '';
 
-  handler = props.actions.pop;
+  if(props.router && props.router.routes.length > 1) {
+    handler = props.actions.pop;
+  }
+  
   if (!transitioning && props.router && props.router.routes.length > 1) {
     title = '返回';
   }
