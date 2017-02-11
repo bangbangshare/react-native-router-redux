@@ -3,15 +3,15 @@ import NavigationBar from 'react-native-navbar';
 import { StyleSheet } from 'react-native';
 
 const leftButton = (props = {}, transitioning) => {
-  if (props.navLeft && props.navLeft._isReactElement) {
-    return props.navLeft;
-  }
+  //if (props.navLeft && props.navLeft._isReactElement) {
+  //  return props.navLeft;
+  //}
 
   let handler = () => {};
   let title = '';
 
+  handler = props.actions.pop;
   if (!transitioning && props.router && props.router.routes.length > 1) {
-    handler = props.actions.pop;
     title = '返回';
   }
 
