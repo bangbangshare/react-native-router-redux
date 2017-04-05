@@ -79,7 +79,7 @@ export default createReducer(initialState, {
       state.tabs, payload.tabBarName, state.activeTab || payload.name);
     let updates = {};
     let activeTab = state.activeTab
-    let data = { num: 1 };
+    let data = { num: payload.num ? payload.num : 1 };
 
     if (isNumeric(payload)) {
       data = { num: payload };
