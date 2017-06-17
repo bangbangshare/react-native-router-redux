@@ -3,9 +3,9 @@ import NavigationBar from 'react-native-navbar';
 import { StyleSheet } from 'react-native';
 
 const leftButton = (props = {}, transitioning) => {
-  //if (props.navLeft && props.navLeft._isReactElement) {
-  //  return props.navLeft;
-  //}
+  if (props.navLeft && props.navLeft._isReactElement) {
+    return props.navLeft;
+  }
 
   let handler = () => {};
   let title = '';
