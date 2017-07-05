@@ -17,23 +17,32 @@ const onSelect = props => el => {
 const imageStyle = props => ({
   height: 25,
   resizeMode: 'contain',
-  tintColor: props.selected ? props.tabStyles.tint :  '#929292',
+  tintColor: '#fff',
   width: 30,
 });
 
 const tabBarStyle = props => ({
-  backgroundColor: props.tabStyles.barTint || '#F9F9F9',
-  borderTopColor: '#D8D8D8',
-  borderTopWidth: 1,
+  backgroundColor: 'transparent',
+  height:80
 });
 
-const tabContainerStyle = () => ({
+const tabContainerStyle = props => ({
   alignItems: 'center',
   justifyContent: 'center',
+  width:50,
+  height:50,
+  borderRadius:50,
+  backgroundColor: props.selected ? 'rgba(0,173,238,0.7)' : 'rgba(0,0,0,0.7)',
+  transform: props.selected ? [{scale:1}] : [{scale:0.7}],
+  elevation: 20,
+  shadowOffset: {width: 0, height: 0},
+  shadowColor: 'black',
+  shadowOpacity: 1,
+  shadowRadius: 10,
 });
 
 const textStyle = props => ({
-  color: props.selected ? props.tabStyles.tint :  '#929292',
+  color: '#fff',
   fontSize: 10,
   letterSpacing: 0.2,
   marginBottom: 2,
@@ -45,7 +54,7 @@ class TabBarIcon extends Component {
     const { name, tabItem } = this.props;
 
     return (
-      <View name={name} style={tabContainerStyle()}>
+      <View name={name} style={tabContainerStyle(this.props)}>
         {tabItem.icon &&
           <Image
             source={tabItem.icon}
