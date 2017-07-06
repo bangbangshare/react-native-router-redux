@@ -15,6 +15,6 @@
   "license": "MIT",
   "dependencies": {
     "react-native-navbar": "1.5.x",
-    "react-native-tabs": "1.0.x"
+    "react-native-tabs": "github:zhuyunxiang/react-native-tabs"
   }
 }

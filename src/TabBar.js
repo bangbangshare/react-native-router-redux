@@ -21,9 +21,16 @@ const imageStyle = props => ({
   width: 30,
 });
 
+const middleImageStyle = props => ({
+  height: 42,
+  resizeMode: 'contain',
+  tintColor: '#16bba2',
+  width: 46,
+});
+
 const tabBarStyle = props => ({
   backgroundColor: 'transparent',
-  height:80
+  height:80,
 });
 
 const tabContainerStyle = props => ({
@@ -34,6 +41,21 @@ const tabContainerStyle = props => ({
   borderRadius:50,
   backgroundColor: props.selected ? 'rgba(0,173,238,0.7)' : 'rgba(0,0,0,0.7)',
   transform: props.selected ? [{scale:1}] : [{scale:0.7}],
+  elevation: 20,
+  shadowOffset: {width: 0, height: 0},
+  shadowColor: 'black',
+  shadowOpacity: 1,
+  shadowRadius: 10,
+});
+
+const middleTabContainerStyle = props => ({
+  alignItems: 'center',
+  justifyContent: 'center',
+  width:50,
+  height:50,
+  borderRadius:50,
+  backgroundColor: props.selected ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,255.7)',
+  transform:[{scale:1},{translateY:-10}],
   elevation: 20,
   shadowOffset: {width: 0, height: 0},
   shadowColor: 'black',
@@ -69,6 +91,26 @@ class TabBarIcon extends Component {
   }
 }
 
+class MiddleTab extends Component {
+  render() {
+    const { name, tabItem } = this.props;
+
+    return (
+      <View name={name} style={middleTabContainerStyle(this.props)}>
+        {tabItem.icon &&
+          <Image
+            source={tabItem.icon}
+            style={middleImageStyle(this.props)}
+            />
+        }
+        {tabItem.title &&
+          <Text style={textStyle(this.props)}>{tabItem.title}</Text>
+        }
+      </View>
+    );
+  }
+}
+
 export default class TabBar extends Component {
   constructor(props){
     super(props);
@@ -81,15 +123,26 @@ export default class TabBar extends Component {
     const tabBarItems = Object.keys(tabs).map(tabName => {
       const tab = tabs[tabName];
       const tabItem = tab.tabItem || {};
-
-      return (
-        <TabBarIcon
-          key={tabName}
-          name={tabName}
-          tabItem={tabItem}
-          tabStyles={this.props.tabStyles}
-          />
-      );
+      console.log(tab.middle)
+      if(tab.middle){
+        return (
+          <MiddleTab
+            key={tabName}
+            name={tabName}
+            tabItem={tabItem}
+            tabStyles={this.props.tabStyles}
+            />
+        );
+      }else{
+        return (
+          <TabBarIcon
+            key={tabName}
+            name={tabName}
+            tabItem={tabItem}
+            tabStyles={this.props.tabStyles}
+            />
+        );
+      }
     });
 
     return (
