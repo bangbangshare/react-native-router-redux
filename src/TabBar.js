@@ -68,7 +68,7 @@ const textStyle = props => ({
   fontSize: 10,
   letterSpacing: 0.2,
   marginBottom: 2,
-  marginTop: 4,
+  marginTop: 0,
 });
 
 class TabBarIcon extends Component {
