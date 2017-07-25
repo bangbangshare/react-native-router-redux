@@ -123,7 +123,6 @@ export default class TabBar extends Component {
     const tabBarItems = Object.keys(tabs).map(tabName => {
       const tab = tabs[tabName];
       const tabItem = tab.tabItem || {};
-      console.log(tab.middle)
       if(tab.middle){
         return (
           <MiddleTab
