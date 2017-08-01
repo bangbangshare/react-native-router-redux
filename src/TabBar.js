@@ -150,6 +150,7 @@ export default class TabBar extends Component {
         onSelect={onSelect(this.props)}
         selected={this.props.activeTab}
         style={tabBarStyle(this.props)}
+        scrolling={this.props.scrolling}
         >
         {tabBarItems}
       </Tabs>
