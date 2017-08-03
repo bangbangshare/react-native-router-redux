@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navigator, StyleSheet, View } from 'react-native';
+import { Navigator, StyleSheet, View, PanResponder } from 'react-native';
 import Animations from './src/Animations';
 import { NavBar } from './src/NavBar';
 import TabBar from './src/TabBar';
@@ -50,7 +50,9 @@ class Router extends React.Component {
 
     const { actions = {}, dispatch } = props;
     actions.routes = {};
-
+    this.state={
+      scrolling:false
+    }
     this.routes = {};
 
     this.schemas = {
@@ -139,6 +141,31 @@ class Router extends React.Component {
       || console.error('No initial route ' + this.initial.name);
   }
 
+  componentWillMount() {
+    this._panResponder = PanResponder.create({  
+            onStartShouldSetPanResponder: () => false,  
+            onMoveShouldSetPanResponder: (evt,gs)=> {
+              if(gs.dy < 0){
+                this.setState({
+                  scrolling:true
+                })
+              }else{
+                this.setState({
+                  scrolling:false
+                })
+              }
+              return false
+            },  
+            onPanResponderGrant: ()=>{
+            },  
+            onPanResponderMove: (evt,gs)=>{  
+          
+            },
+            onPanResponderTerminationRequest: (evt, gs) => true,  
+            onPanResponderRelease: (evt,gs)=>{  
+        }})  
+  }
+
   componentDidMount() {
     this.props.actions.init(this.initial);
   }
@@ -176,7 +203,7 @@ class Router extends React.Component {
     }
 
     return (
-      <View style={styles.transparent}>
+      <View style={styles.transparent} {...this._panResponder.panHandlers}>
         <Navigator
           configureScene={(route) => route.sceneConfig}
           initialRoute={this.getRoute(this.initialRoute, this.props.router)}
@@ -272,6 +299,7 @@ class Router extends React.Component {
           activeTab={router.activeTab}
           tabs={tabs}
           tabStyles={tabStyles}
+          scrolling={this.state.scrolling}
           />
       );
     }
