@@ -17,7 +17,7 @@ const onSelect = props => el => {
 const imageStyle = props => ({
   height: 25,
   resizeMode: 'contain',
-  tintColor: '#fff',
+  tintColor: props.selected ? props.tabStyles.tint : '#a3a3a3',
   width: 30,
 });
 
@@ -29,23 +29,14 @@ const middleImageStyle = props => ({
 });
 
 const tabBarStyle = props => ({
-  backgroundColor: 'transparent',
-  height:80,
+  backgroundColor: '#fff',
+  height:50,
 });
 
 const tabContainerStyle = props => ({
   alignItems: 'center',
   justifyContent: 'center',
-  width:50,
   height:50,
-  borderRadius:50,
-  backgroundColor: props.selected ? 'rgba(0,173,238,0.7)' : 'rgba(0,0,0,0.7)',
-  transform: props.selected ? [{scale:1}] : [{scale:0.7}],
-  elevation: 20,
-  shadowOffset: {width: 0, height: 0},
-  shadowColor: 'black',
-  shadowOpacity: 1,
-  shadowRadius: 10,
 });
 
 const middleTabContainerStyle = props => ({
@@ -55,16 +46,10 @@ const middleTabContainerStyle = props => ({
   height:50,
   borderRadius:50,
   backgroundColor: props.selected ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,255.7)',
-  transform:[{scale:1},{translateY:-10}],
-  elevation: 20,
-  shadowOffset: {width: 0, height: 0},
-  shadowColor: 'black',
-  shadowOpacity: 1,
-  shadowRadius: 10,
 });
 
 const textStyle = props => ({
-  color: '#fff',
+  color: props.selected ? props.tabStyles.tint : '#a3a3a3',
   fontSize: 10,
   letterSpacing: 0.2,
   marginBottom: 2,
