@@ -1,4 +1,5 @@
-var {Navigator,Dimensions,PixelRatio} = require('react-native');
+var {Dimensions,PixelRatio} = require('react-native');
+import {Navigator} from 'react-native-deprecated-custom-components';
 var buildStyleInterpolator = require('react-native/Libraries/Utilities/buildStyleInterpolator');
 var FlatFloatFromRight = Object.assign({}, Navigator.SceneConfigs.FloatFromRight);
 var FlatFloatFromBottom = Object.assign({}, Navigator.SceneConfigs.FloatFromBottom);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Navigator, StyleSheet, View, PanResponder } from 'react-native';
+import { StyleSheet, View, PanResponder } from 'react-native';
+import { Navigator } from 'react-native-deprecated-custom-components';
 import Animations from './src/Animations';
 import { NavBar } from './src/NavBar';
 import TabBar from './src/TabBar';
